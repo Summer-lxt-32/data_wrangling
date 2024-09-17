@@ -24,6 +24,59 @@ view(litters_df)
 ```
 
 
+```{r}
+pups_df = read_csv("data_import_examples/FAS_pups.csv")
+
+pups_df = janitor::clean_names(pups_df)
+```
+
+Use absolute path
+
+```{r, eval = FALSE}
+pups_df = read_csv("/Users/lixueting/Desktop/哥大/8105/data_wrangling/data_import_examples/FAS_pups.csv")
+```
+
+## Look at read_csv options
+
+```{r}
+litters_df = read.csv(
+  file = "data_import_examples/FAS_litters.csv",
+  skip = 0 ## number of lines you need to skip
+)
+```
+
+What about missing data
+
+```{r}
+litters_df = read.csv(
+  file = "data_import_examples/FAS_litters.csv",
+  na = c("NA", "", ".") ## convert all weired things to NA value
+)
+
+litters_df = janitor::clean_names(litters_df)
+
+pull(litters_df, gd0_weight)
+
+```
+
+What if we code `group` as a factor variable?
+
+```{r}
+litters_df = read_csv(
+  file = "data_import_examples/FAS_litters.csv",
+  na = c("NA", "", "."),
+  col_types = cols(
+    Group = col_factor()
+  )
+)
+```
+
+
+
+
+
+
+
 
 
 
